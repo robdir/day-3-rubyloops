@@ -82,6 +82,9 @@ steps.each_with_index do |step, index|
   puts (index).to_s + ") " + step[:description]
 end
 
+#Adding methods to be indicate progress to the user.
+
+
 def generic_recipe_step
   puts "On it!"
   print_progress_bar
@@ -121,4 +124,29 @@ def break_eggs
   end
 end
 
-scrape_potatoes
+
+def ask_if_ready(step, index)
+  puts "Are you ready for step #{index + 1}?\n(#{step[:description]})"
+  answer = gets.chomp
+
+  answer.upcase == 'Y'
+end
+
+steps.each_with_index do |step, index|
+  print_divider
+
+  loop do
+    ready = ask_if_ready(step, index)
+    break if ready
+
+    puts "Okay, I will give you some extra time."
+    print_progress_bar
+  end
+
+  send(step:[action])
+  end
+
+  print_divider
+  print_divider
+  print_divider
+  puts "Enjoy your meal!"
