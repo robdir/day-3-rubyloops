@@ -53,6 +53,8 @@ loop do
 end
 end
 
+#An array of hashes which outlines the steps needed.
+
 steps = [
   { description: "Scrape potatoes", action: "scrape_potatoes" },
   { description: "Cut potatoes into thick slices", action: "cut_potatoes" },
@@ -69,3 +71,13 @@ steps = [
   { description: "When almost set, invert on a plate and slide back into the pan", action: "generic_recipe_step" },
   { description: "Cook a few more minutes and slide on to a plate and cool for 10 minutes before serving", action: "generic_recipe_step" }
 ]
+
+print_divider
+puts "See below for recipe overview:"
+
+#IMPORTANT STEP - SEE BELOW FOR HOW TO PROPERLY ITERATE THROUGH THE ABOVE
+#INDEX GRABS THE NO. WHICH RUBY ASSIGNS TO THE ARRAY, |STEP| IS USED TO ACCESS THE HASHES
+
+steps.each_with_index do |step, index|
+  puts (index).to_s + ") " + step[:description]
+end
